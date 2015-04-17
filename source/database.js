@@ -43,5 +43,38 @@ var db = exports.database = {
             mode: 0666
         })
         if (info != 'undefined') file.write(info);
-    }
+    },
+    
+    write:  function(file, name, info, callback) {
+        var data = fs.readFileSync('config/' + file + '.csv', 'utf8').split('\n');
+        var match = false;
+        var len = data.length;
+        while (len--) {
+            if (!data[len]) continue;
+            var parts = data[len].split(',');
+            if (parts[0] === name) {
+                data = data[len];
+                match = true;
+                break;
+            }
+        }
+        if (match === true) {
+            var re = new RegExp(data, 'g');
+            fs.readFile('config/' + file + '.csv', 'utf8', function(err, data) {
+                if (err) return console.log(err);
+                var result = data.replace(re, name + ',' + info);
+                fs.writeFile('config/' + file + '.csv', result, 'utf8', function(err) {
+                    if (err) return console.log(err);
+                    typeof callback === 'function' && callback();
+                });
+            });
+        } else {
+            var log = fs.createWriteStream('config/' + file + '.csv', {
+                'flags': 'a'
+            });
+            log.write('\n' + name + ',' + info);
+            typeof callback === 'function' && callback();
+        }
+    },
+    
 };
