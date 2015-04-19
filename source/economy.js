@@ -1,4 +1,8 @@
-var money = exports.money = {};
+var money exports.money = {
+  get: function(user) {
+   return db.getInfo('money,csv', user, false);
+  },
+};
 
 exports.shop = {
 currency: 'SP',
@@ -26,7 +30,8 @@ casinopass: 'A pass for the casino until server restart.',
 casinoticket: 'A permanent pass to the casino',
 customavatar: 'A custom avatar, must be a 80x80 gif or png file.',
 trainercard: 'A customizable HTML box.',
-customcards: '3 html boxes made with bandi's tc maker commands.',
+customcards: '3 html boxes made with bandi\'s tc maker commands.',
 bot: 'A bot for your room, you can also pay for commmands, but they must be already made.',
 },
 };
+
