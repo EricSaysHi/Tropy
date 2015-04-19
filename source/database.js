@@ -44,9 +44,9 @@ var db = exports.database = {
         })
         if (info != 'undefined') file.write(info);
     },
-    
-    write:  function(file, name, info, callback) {
-        var data = fs.readFileSync('config/' + file + '.csv', 'utf8').split('\n');
+    //Used when you need to write data for a certain user
+   writeUserData:  function(file, name, info, callback) {
+        var data = fs.readFileSync(dir + file + '.csv', 'utf8').split('\n');
         var match = false;
         var len = data.length;
         while (len--) {
@@ -69,12 +69,18 @@ var db = exports.database = {
                 });
             });
         } else {
-            var log = fs.createWriteStream('config/' + file + '.csv', {
+            var log = fs.createWriteStream(dir + file + '.csv', {
                 'flags': 'a'
             });
             log.write('\n' + name + ',' + info);
             typeof callback === 'function' && callback();
         }
     },
-    
+    //used for when you just want to write data in general
+     write:  function(file, info) {
+         var log = fs.createWriteStream(dir + file + '.csv', {
+                'flags': 'w+'
+            });
+            log.write(info);
+    },
 };
