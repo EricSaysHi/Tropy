@@ -1,5 +1,5 @@
 //If you want the database to be created in config just change the folder to config
-var dir = '../database/';
+var dir = 'database/';
 
 var fs = require('fs');
 
@@ -20,11 +20,11 @@ var db = exports.database = {
     },
 
     getInfo: function(file, name, all) {
-        if (this.exists(file) === false) return false;
+        if (this.exists(file + '.csv') === false) return false;
         var data = fs.readFileSync(dir + file + '.csv', 'utf8')
         if (all === true) return data;
         else {
-            data = data.split('\n');
+            data = data.split('\n').toString();
             if (data.length > 0) {
                 for (var i in data) {
                     var newdata = data[i].split(',');
@@ -36,7 +36,7 @@ var db = exports.database = {
         }
     },
     create: function(filename, info) {
-        var file = fs.createWriteStream(dir + filename, {
+        var file = fs.createWriteStream(dir + filename + '.csv', {
             flags: 'w+',
             encoding: null,
             fd: null,
@@ -45,7 +45,7 @@ var db = exports.database = {
         if (info != 'undefined') file.write(info);
     },
     //Used when you need to write data for a certain user
-   writeUserData:  function(file, name, info, callback) {
+   writeUser:  function(file, name, info, callback) {
         var data = fs.readFileSync(dir + file + '.csv', 'utf8').split('\n');
         var match = false;
         var len = data.length;
@@ -60,10 +60,10 @@ var db = exports.database = {
         }
         if (match === true) {
             var re = new RegExp(data, 'g');
-            fs.readFile('config/' + file + '.csv', 'utf8', function(err, data) {
+            fs.readFile(dir + file + '.csv', 'utf8', function(err, data) {
                 if (err) return console.log(err);
                 var result = data.replace(re, name + ',' + info);
-                fs.writeFile('config/' + file + '.csv', result, 'utf8', function(err) {
+                fs.writeFile(dir + file + '.csv', result, 'utf8', function(err) {
                     if (err) return console.log(err);
                     typeof callback === 'function' && callback();
                 });
