@@ -10,11 +10,22 @@
  
 /*#header {background:url("http://www.dustinhetrick.com/rain.gif");background-repeat}*/
 
-body{background-image:url("http://deborahshairstudio.com/wp-content/uploads/2014/06/LIGHT-RED-BACKGROUND.jpg");background-repeat:background-position:center;font-family: "Cambria (Headings)",Verdana,Helvetica,Arial,sans-serif;}
-
-.chat-log{font-size:16pt;background: url("http://imgur.com/7Ls4Ebq") no-repeat center;background:#2EFEF7;color:#0000FF;overflow:auto;}
+body{background-image:url("http://imgur.com/7Ls4Ebq.jpg");background-repeat:background-position:center;font-family: "Cambria (Headings)",Verdana,Helvetica,Arial,sans-serif;}
 
 
+.chat-log{font-size:16pt;background: url("http://deborahshairstudio.com/wp-content/uploads/2014/06/LIGHT-RED-BACKGROUND.jpg") no-repeat center;background:#2EFEF7;color:#32cd32;overflow:auto;}
+.userlist {
+border-left: 1px solid #CEF6F5;
+background: url("http://www.toppstiles.co.uk/s_product_images/M40503_1_Chic%20Craquele%20Dark%20White%2013x13%20811428.jpg");
+color:#00FFFF;
+}
+
+.chat-log-add {
+background-image:url("http://www.toppstiles.co.uk/s_product_images/M40503_1_Chic%20Craquele%20Dark%20White%2013x13%20811428.jpg");	
+background:#CEF6F5;
+color:#CEF6F5;
+border-color: #40FF00;
+}
 /*
 .menugroup {
 background:#000000);
@@ -24,11 +35,6 @@ border-color: #00FF40;
 
 .button:hover{background:#40FF00;}
 
-.userlist {
-border-left: 1px solid #CEF6F5;
-background: url("http://images2.layoutsparks.com/1/199343/heart-of-ice-rain.jpg");
-color:#00FFFF;
-}
 
 .userlist li em.group {
         font-style: normal;
@@ -130,12 +136,6 @@ right: -1px;
 height: 360px;
 font-family: Cambria (Headings);
 font-size: 10pt;
-}
-
-.chat-log-add {
-background:#CEF6F5;
-color:#CEF6F5;
-border-color: #40FF00;
 }
 
          
